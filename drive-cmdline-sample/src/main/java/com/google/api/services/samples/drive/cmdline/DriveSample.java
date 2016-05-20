@@ -61,8 +61,8 @@ public class DriveSample {
    */
   private static final String APPLICATION_NAME = "";
 
-  private static final String UPLOAD_FILE_PATH = "Enter File Path";
-  private static final String DIR_FOR_DOWNLOADS = "Enter Download Directory";
+  private static final String UPLOAD_FILE_PATH = "/users/rajil/downloads/";
+  private static final String DIR_FOR_DOWNLOADS = "/users/rajil/downloads/";
   private static final java.io.File UPLOAD_FILE = new java.io.File(UPLOAD_FILE_PATH);
 
   /** Directory to store user credentials. */
@@ -93,14 +93,13 @@ public class DriveSample {
         || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
       System.out.println(
           "Enter Client ID and Secret from https://code.google.com/apis/console/?api=drive "
-          + "into drive-cmdline-sample/src/main/resources/client_secrets.json");
+              + "into drive-cmdline-sample/src/main/resources/client_secrets.json");
       System.exit(1);
     }
     // set up authorization code flow
-    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-        httpTransport, JSON_FACTORY, clientSecrets,
-        Collections.singleton(DriveScopes.DRIVE_FILE)).setDataStoreFactory(dataStoreFactory)
-        .build();
+    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport,
+        JSON_FACTORY, clientSecrets, Collections.singleton(DriveScopes.DRIVE_FILE))
+            .setDataStoreFactory(dataStoreFactory).build();
     // authorize
     return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
   }
@@ -116,8 +115,8 @@ public class DriveSample {
       // authorization
       Credential credential = authorize();
       // set up the global Drive instance
-      drive = new Drive.Builder(httpTransport, JSON_FACTORY, credential).setApplicationName(
-          APPLICATION_NAME).build();
+      drive = new Drive.Builder(httpTransport, JSON_FACTORY, credential)
+          .setApplicationName(APPLICATION_NAME).build();
 
       // run commands
 
